@@ -1,0 +1,15 @@
+body{
+	
+
+}
+div#all{		
+	background-color: rgba(255,255,255,0.5);
+	height: 80%;
+	width: 80%;
+	position: absolute;	
+	top: 5%;
+	left: 10%;	
+}
+form#login{
+	margin-top: 15%;
+}

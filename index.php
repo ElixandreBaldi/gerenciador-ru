@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.theme.min.css">
 	<style type="text/css">
 		body{
-			background: url(img/img<?php echo rand(1,6);?>.jpg);			
+			background: url(img/img<?php echo rand(1,7);?>.jpg);			
 		}
 	</style>
 </head>
@@ -25,7 +25,7 @@
 	    <div class="row">
 	    	<div class="col-md-6 col-md-offset-3">
 				<div class="input-group input-group-lg">
-					<span class="input-group-addon glyphicon glyphicon-user" id="sizing-addon1"></span>
+					<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
 					<input type="text" class="form-control" placeholder="Usuário" aria-describedby="sizing-addon1">
 				</div>
 			</div>
@@ -34,7 +34,7 @@
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
 				<div class="input-group input-group-lg">
-					<span class="input-group-addon glyphicon glyphicon-certificate" id="sizing-addon1"></span>
+					<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
 					<input type="password" class="form-control" placeholder="Senha" aria-describedby="sizing-addon1">
 				</div>
 			</div>
@@ -42,7 +42,7 @@
 		<br/>
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<button type="button" class="btn btn-primary btn-lg col-md-12">Entrar</button>
+				<a href="main.php"><button type="button" class="btn btn-primary btn-lg col-md-12">Entrar</button></a>
 			</div>
 		</div>
 

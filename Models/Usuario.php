@@ -1,7 +1,8 @@
 <?php
-
-class Usuario
+require_once('Model.php');
+class Usuario extends Model
 {
+    protected static $table = 'usuarios';
     /**
      * @var int Id do usuário.
      */

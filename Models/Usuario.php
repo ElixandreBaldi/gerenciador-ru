@@ -134,6 +134,21 @@ class Usuario extends Model
         $table = Usuario::$table;
         return parent::find($id, $table);
     }
+
+    public static function findLogin($usuario, $password)
+    {        
+
+        try {
+            $users = Model::sql("SELECT * FROM".Usuario::$table."WHERE usuario = " . $usuario . " AND senha = " . $password . " LIMIT 1");
+            foreach ($users as $user) {
+                $cont++;
+                # code...
+            }
+
+        } catch (PDOException $e) {
+            throw $e;
+        }
+    }    
 }
 
 ?>

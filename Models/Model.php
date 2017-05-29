@@ -41,8 +41,15 @@ class Model
      */
     public static function sql($sql)
     {
-        // $sql
+        $conn = new Connection();
+        try {
+            return $conn->query($sql);
+        } catch (PDOException $e) {
+            throw $e;
+        }
     }
+
+    
 }
 
 ?>

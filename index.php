@@ -14,7 +14,6 @@
 <body>
 <div class="panel panel-default container" id="all">
     <div class="panel-body">
-
         <legend>
             <h1>
                 Restaurante Universitário
@@ -45,7 +44,7 @@
             <br/>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                        <button type="submit" class="btn btn-primary btn-lg col-md-12">Entrar</button>
+                    <button type="submit" class="btn btn-primary btn-lg col-md-12">Entrar</button>
                 </div>
             </div>
 

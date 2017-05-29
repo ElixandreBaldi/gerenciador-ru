@@ -1,7 +1,13 @@
 <?php
 
+require_once('../Services/Connection.php');
+
 class Model
 {
+    /*
+     CREATE DATABASE ru; USE ru;
+    */
+
     /**
      * @var string Tabela referente ao modelo.
      */

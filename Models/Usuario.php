@@ -1,7 +1,22 @@
 <?php
+
 require_once('Model.php');
+
 class Usuario extends Model
 {
+    /*
+     CREATE TABLE usuarios (
+        id INT(11) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+        usuario VARCHAR(255) NOT NULL,
+        senha VARCHAR(255) NOT NULL,
+        nivel INT(2) NOT NULL,
+        registro_academico INT(11) NULL,
+        registro_universitario INT(11) NULL,
+        criado_em DATETIME NULL,
+        atualizado_em DATETIME NULL
+     );
+    */
+
     protected static $table = 'usuarios';
     /**
      * @var int Id do usuário.

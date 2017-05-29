@@ -24,11 +24,11 @@ class Model
      * @param $id
      * @return array
      */
-    public static function find($id)
+    public static function find($id, $table)
     {
         $conn = new Connection();
         try {
-            return $conn->query('SELECT * FROM '.Model::$table.' WHERE '.Model::$primaryKey.'='.$id.'LIMIT 1');
+            return $conn->query('SELECT * FROM ' . $table . ' WHERE ' . Model::$primaryKey . '=' . $id . ' LIMIT 1');
         } catch (PDOException $e) {
             throw $e;
         }

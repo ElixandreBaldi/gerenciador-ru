@@ -128,6 +128,12 @@ class Usuario extends Model
     {
         return !$this->isAluno();
     }
+
+    public static function find($id)
+    {
+        $table = Usuario::$table;
+        return parent::find($id, $table);
+    }
 }
 
 ?>

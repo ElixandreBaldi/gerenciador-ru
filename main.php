@@ -17,9 +17,10 @@
 <div id="all">
     <form>
         <div class="panel-heading">
+            <legend>Consumir Refeição</legend>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-cutlery"></i></span>
-                <input id="entrada-codigo" type="text" class="form-control" placeholder="código" autofocus="autofocus"
+                <input id="entrada-codigo" type="text" class="form-control" placeholder="Insira o cartão do cliente" autofocus="autofocus"
                        aria-describedby="sizing-addon1">
                 <span class="input-group-btn"><button class="btn btn-default" type="button"><i
                                 class="glyphicon glyphicon-ok"></i></button></span>
@@ -51,17 +52,30 @@
             </div>
             <br/><br/><br/><br/><br/>
             <div class="col-md-offset-1" id="valor">
-				<span class="label label-danger" style="font-size: 50px;">
-					R$ 0,00
-				</span>
+                <a href="main.php" class="btn button">
+    				<span class="label label-danger" style="font-size: 50px;">
+    					R$ 0,00 <i class="glyphicon glyphicon-refresh"></i>
+    				</span>
+                </a>
             </div>            
         </div>
     </form>
 </div>
 
-<a href="cadastroUsuario.php" style="position: absolute; right: 0; bottom: 0;">
-    <button type="button" class="btn btn-primary">Cadastrar Usuário</button>
-</a>
+<div id="acoes" style="position: absolute; right: 0; bottom: 0;">
+    <a href="cadastroUsuario.php">
+        <button type="button" class="btn btn-primary">Cadastrar Usuário</button>
+    </a>
+    <a href="inserirCreditos.php">
+        <button type="button" class="btn btn-primary">Recarregar Usuário</button>
+    </a>
+    <a href="logUsuario.php">
+        <button type="button" class="btn btn-primary">Consultar Histórico </button>
+    </a> 
+    <a href="index.php">
+        <button type="button" class="btn btn-primary">Sair <i class="glyphicon glyphicon-share"></i> </button>
+    </a>    
+</div>
 
 <script>
     $('#servidor,#aluno,#valor').hide();

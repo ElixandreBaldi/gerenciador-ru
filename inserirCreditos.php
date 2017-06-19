@@ -17,9 +17,10 @@
 <div id="all">
     <form>
         <div class="panel-heading">
+        <legend>Recarga de Créditos</legend>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="entrada-codigo" type="text" class="form-control" placeholder="código" autofocus="autofocus"
+                <input id="entrada-codigo" type="text" class="form-control" placeholder="Insira o cartão do cliente" autofocus="autofocus"
                        aria-describedby="sizing-addon1">
                 <span class="input-group-btn"><button class="btn btn-default" type="button"><i
                                 class="glyphicon glyphicon-ok"></i></button></span>
@@ -57,13 +58,29 @@
             </div>                        
             <div id="valor">
                 <div class="form-group col-md-7" style="margin-top:10px;">
-    				<span class="label label-success" id="valor-recarga" style="font-size: 50px;">
-    					R$ 0,00
-    				</span>
+                    <a href="inserirCreditos.php" class="btn button">
+        				<span class="label label-success" id="valor-recarga" style="font-size: 50px;">
+        					R$ 0,00
+        				</span>
+                    </a>
                 </div>
             </div>
         </div>
     </form>
+</div>
+<div id="acoes" style="position: absolute; right: 0; bottom: 0;">
+    <a href="main.php">
+        <button type="button" class="btn btn-primary">Início</button>
+    </a>  
+    <a href="cadastroUsuario.php">
+        <button type="button" class="btn btn-primary">Cadastrar Usuário</button>
+    </a>    
+    <a href="logUsuario.php">
+        <button type="button" class="btn btn-primary">Consultar Histórico </button>
+    </a> 
+    <a href="index.php">
+        <button type="button" class="btn btn-primary">Sair <i class="glyphicon glyphicon-share"></i></button>
+    </a>  
 </div>
 <script>
     $('#servidor,#aluno,#valor,#input-carga').hide();
@@ -85,7 +102,7 @@
             num = '0.00';
         }
         var string = ("R$ " + num).replace('.',',');
-        $("#valor-recarga").html(string);
+        $("#valor-recarga").html(string+' <i class="glyphicon glyphicon-refresh"></i>');
     });
 </script>
 </body>

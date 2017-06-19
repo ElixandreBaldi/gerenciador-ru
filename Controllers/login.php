@@ -1,5 +1,6 @@
 <?php
 
+header("Location: ../main.php");
 require_once('../Models/Usuario.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){

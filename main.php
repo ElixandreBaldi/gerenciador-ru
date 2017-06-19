@@ -3,9 +3,10 @@
 <head>
     <title>Gerenciador RU | Principal</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="js/jquery-3.2.1.min.js"></script>    
+    <script type="text/javascript" src="js/script.js"></script>
+
     <style type="text/css">
         body {
             background: url('img/imgs<?php echo rand(1,3);?>.jpg');

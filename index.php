@@ -47,6 +47,14 @@
                     <button type="submit" class="btn btn-primary btn-lg col-md-12">Entrar</button>
                 </div>
             </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <a href="cadastroUsuario.php">
+                        <button type="button" class="btn btn-primary btn-lg col-md-12">Cadastre-se</button>
+                    </a>
+                </div>
+            </div>
 
         </form>
     </div>

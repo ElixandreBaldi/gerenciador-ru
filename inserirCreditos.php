@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Gerenciador RU | Principal</title>
+    <title>Gerenciador RU | Efetuar Recarga</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.min.js"></script>    
@@ -18,7 +18,7 @@
     <form>
         <div class="panel-heading">
             <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-cutlery"></i></span>
+                <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
                 <input id="entrada-codigo" type="text" class="form-control" placeholder="código" autofocus="autofocus"
                        aria-describedby="sizing-addon1">
                 <span class="input-group-btn"><button class="btn btn-default" type="button"><i
@@ -31,51 +31,61 @@
                 <legend>Aluno</legend>
                 <div class="form-group col-md-5">
                     <label for="ra">Registro Acadêmico:</label>
-                    <input type="text" class="form-control" readonly="readonly" name="ra"/>
+                    <input type="text" class="form-control" disabled name="ra"/>
                 </div>
                 <div class="form-group col-md-7">
-                    <label for="ra">Nome:</label>
-                    <input type="text" class="form-control" readonly="readonly" name="ra"/>
+                    <label for="nome-academico">Nome:</label>
+                    <input type="text" class="form-control" disabled name="nome-academico"/>
                 </div>
             </div>
             <div id="servidor">
                 <legend>Servidor</legend>
                 <div class="form-group col-md-5">
                     <label for="ra">Registro Universitáro:</label>
-                    <input type="text" class="form-control" readonly="readonly" name="ra"/>
+                    <input type="text" class="form-control" disabled name="ra"/>
                 </div>
                 <div class="form-group col-md-7">
-                    <label for="ra">Nome:</label>
-                    <input type="text" class="form-control" readonly="readonly" name="ra"/>
+                    <label for="nome-servidor">Nome:</label>
+                    <input type="text" class="form-control" disabled name="nome-servidor"/>
                 </div>
             </div>
-            <br/><br/><br/><br/><br/>
-            <div class="col-md-offset-1" id="valor">
-				<span class="label label-danger" style="font-size: 50px;">
-					R$ 0,00
-				</span>
-            </div>            
+            <div id="input-carga">
+                <div class="form-group col-md-7">
+                    <label for="ra">Quantidade da Carga:</label>
+                    <input type="number" id="valor-carga" class="form-control" name="quantidade-carga"/>
+                </div>
+            </div>                        
+            <div id="valor">
+                <div class="form-group col-md-7" style="margin-top:10px;">
+    				<span class="label label-success" id="valor-recarga" style="font-size: 50px;">
+    					R$ 0,00
+    				</span>
+                </div>
+            </div>
         </div>
     </form>
 </div>
-
-<a href="cadastroUsuario.php" style="position: absolute; right: 0; bottom: 0;">
-    <button type="button" class="btn btn-primary">Cadastrar Usuário</button>
-</a>
-
 <script>
-    $('#servidor,#aluno,#valor').hide();
+    $('#servidor,#aluno,#valor,#input-carga').hide();
     $('#entrada-codigo').blur(function () {
         var cod = $('#entrada-codigo').val();
         if ((cod.length >= 4)) {
             if (cod[0] === '1') {
                 $('#aluno').hide();
-                $('#servidor,#valor').show();
+                $('#servidor,#valor,#input-carga').show();
             } else {
                 $('#servidor').hide();
-                $('#aluno,#valor').show();
+                $('#aluno,#valor,#input-carga').show();
             }
         }
+    });
+    $("#valor-carga").blur(function(){
+        var num = parseFloat($('#valor-carga').val()).toFixed(2);
+        if (isNaN(num) || num < 0) {
+            num = '0.00';
+        }
+        var string = ("R$ " + num).replace('.',',');
+        $("#valor-recarga").html(string);
     });
 </script>
 </body>

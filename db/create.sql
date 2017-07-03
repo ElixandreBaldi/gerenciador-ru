@@ -42,7 +42,7 @@ DEFAULT CHARACTER SET = utf8;
 DROP TABLE IF EXISTS `ru`.`transacoes` ;
 
 CREATE TABLE IF NOT EXISTS `ru`.`transacoes` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `valor` DECIMAL(8,2) NOT NULL,
   `criado_em` DATETIME NULL,
   `usuario_id` INT NOT NULL,

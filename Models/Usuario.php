@@ -113,18 +113,11 @@ class Usuario extends Model
      */
     public function isFuncionario()
     {
-        return !$this->isAluno();
-    }
-
-    public static function find($id)
-    {
-        $table = Usuario::$table;
-        return parent::find($id, $table);
+        return $this->isFuncionario();
     }
 
     public static function findLogin($usuario, $password)
-    {        
-
+    {
         try {
             $users = Model::sql("SELECT * FROM".Usuario::$table."WHERE usuario = " . $usuario . " AND senha = " . $password . " LIMIT 1");
             foreach ($users as $user) {

@@ -1,6 +1,7 @@
 <?php
 
 require_once('../Services/Connection.php');
+require_once('../Services/SearchBuilder.php');
 
 class Model
 {
@@ -11,7 +12,7 @@ class Model
     /**
      * @var string Tabela referente ao modelo.
      */
-    protected static $table;
+    protected static $table = '';
 
     /**
      * @var string Atributo chave primaria do modelo.
@@ -24,16 +25,20 @@ class Model
      * @param $id
      * @return array
      */
-    public static function find($id, $table)
+    public static function find($id)
     {
-        $conn = new Connection();
         try {
-            return $conn->query('SELECT * FROM ' . $table . ' WHERE ' . Model::$primaryKey . '=' . $id . ' LIMIT 1');
+            //echo 'SELECT * FROM ' . static::$table . ' WHERE ' . static::$primaryKey . '=' . $id . ' LIMIT 1';
+            return Connection::getConnection()->query('SELECT * FROM ' . static::$table . ' WHERE ' . static::$primaryKey . '=' . $id . ' LIMIT 1');
         } catch (PDOException $e) {
             throw $e;
         }
     }
 
+    public static function search ()
+    {
+        return new SearchBuilder(static::$table);
+    }
     /**
      * Executa uma sql qualquer.
      *
@@ -41,15 +46,12 @@ class Model
      */
     public static function sql($sql)
     {
-        $conn = new Connection();
         try {
-            return $conn->query($sql);
+            return Connection::getConnection()->query($sql);
         } catch (PDOException $e) {
             throw $e;
         }
     }
-
-    
 }
 
 ?>

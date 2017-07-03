@@ -19,7 +19,7 @@
                 Restaurante Universitário
             </h1>
         </legend>
-        <form id="login" method="POST" action="Controllers/login.php">
+        <form id="login" method="POST" action="control/login.php">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="input-group input-group-lg">

@@ -7,15 +7,27 @@ class Connection
      */
     private $db;
 
-    public function __construct()
+    private static $instance = null;
+
+    private function __construct()
     {
         try {
-            $this->db = new PDO('mysql:host=localhost;dbname=ru;charset=utf8mb4', 'root', '');
+            $this->db = new PDO('mysql:host=localhost;dbname=ru;charset=utf8mb4', 'root', 'root');
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
+            self::$instance = $this;
         } catch (PDOException $e) {
             throw $e;
         }
+    }
+
+    public static function getConnection()
+    {
+        if (is_null(self::$instance)){
+            return new Connection();
+        }
+
+        return self::$instance;
     }
 
     /**

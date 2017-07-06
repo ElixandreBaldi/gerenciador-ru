@@ -7,12 +7,19 @@ class Connection
      */
     private $db;
 
+    /**
+     * @var \Connection|null A propria conexao.
+     */
     private static $instance = null;
 
+    /**
+     * Connection constructor.
+     * Privado devido ao DesignPattern Singleton
+     */
     private function __construct()
     {
         try {
-            $this->db = new PDO('mysql:host=localhost;dbname=ru;charset=utf8mb4', 'root', 'root');
+            $this->db = new PDO('mysql:host=localhost;dbname=ru;charset=utf8mb4', 'root', 'vertrigo');
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             self::$instance = $this;
@@ -21,6 +28,11 @@ class Connection
         }
     }
 
+    /**
+     * Retorna a conexao singleton.
+     *
+     * @return \Connection|null
+     */
     public static function getConnection()
     {
         if (is_null(self::$instance)){

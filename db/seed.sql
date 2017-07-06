@@ -1,8 +1,8 @@
 insert into `usuarios` (`usuario`, `senha`, `nivel`, `registro_academico`, `registro_universitario`, `criado_em`, `atualizado_em`)
-values  ('canabarro', ENCRYPT('comida123'), 2, 39951, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-		('tashiro', ENCRYPT('pasteldeflango'), 2, 40032, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-		('diogostelle', ENCRYPT('melhorprofessordomundo'), 3, NULL, 99999, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
-		('admin', ENCRYPT('admin'), 1, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
+values  ('canabarro', MD5('comida123'), 2, 39951, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+		('tashiro', MD5('pasteldeflango'), 2, 40032, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+		('diogostelle', MD5('melhorprofessordomundo'), 3, NULL, 99999, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP),
+		('admin', MD5('admin'), 1, NULL, NULL, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP);
 
 insert into `transacoes` (`valor`, `criado_em`,`usuario_id`)
 values  (-2.50, '2017-07-12 12:23:24', 1),

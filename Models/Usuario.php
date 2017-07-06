@@ -5,6 +5,7 @@ require_once('Model.php');
 class Usuario extends Model
 {
     protected static $table = 'usuarios';
+
     /**
      * @var int Id do usuário.
      */
@@ -52,9 +53,19 @@ class Usuario extends Model
      * @param int $registro
      * @param bool $isRegistroAcademico
      * @param int $nivel
+     * @param null|string $criadoEm
+     * @param null|string $atualizadoEm
      */
-    public function __construct($id, $usuario, $senha, $registro, $isRegistroAcademico, $nivel)
-    {
+    public function __construct(
+        $id,
+        $usuario,
+        $senha,
+        $registro,
+        $isRegistroAcademico,
+        $nivel,
+        $criadoEm = null,
+        $atualizadoEm = null
+    ) {
         $this->id = $id;
         $this->usuario = $usuario;
         $this->senha = md5($senha);
@@ -66,6 +77,28 @@ class Usuario extends Model
             $this->registroAcademico = null;
         }
         $this->nivel = $nivel;
+
+        if (is_null($criadoEm)) {
+            $criadoEm = date('Y-m-d H:i:s');
+        }
+        if (is_null($atualizadoEm)) {
+            $atualizadoEm = date('Y-m-d H:i:s');
+        }
+        $this->criadoEm = $criadoEm;
+        $this->atualizadoEm = $atualizadoEm;
+    }
+
+    public static function instanceByArray(array $data)
+    {
+        if (is_null($data['registro_academico'])) {
+            $registro = $data['registro_universitario'];
+            $isRegistroAcademico = false;
+        } else {
+            $registro = $data['registro_academico'];
+            $isRegistroAcademico = true;
+        }
+
+        return new self($data['id'], $data['usuario'], $data['senha'], $registro, $isRegistroAcademico, $data['nivel'], $data['criado_em'], $data['atualizado_em']);
     }
 
     /**
@@ -113,22 +146,33 @@ class Usuario extends Model
      */
     public function isFuncionario()
     {
-        return $this->isFuncionario();
+        return $this->registroAcademico == null ? false : true;
     }
 
-    public static function findLogin($usuario, $password)
+    /**
+     * Encontra um usuario por meio do login e senha.
+     *
+     * @param string $usuario
+     * @param string $password
+     * @return Usuario
+     */
+    public static function findLogin($username, $password)
     {
         try {
-            $users = Model::sql("SELECT * FROM".Usuario::$table."WHERE usuario = " . $usuario . " AND senha = " . $password . " LIMIT 1");
-            foreach ($users as $user) {
-                $cont++;
-                # code...
-            }
-
+            $result = self::search()
+                ->whereEqual('usuario', $username)
+                ->whereEqual('senha', md5($password))
+                ->limit(1)
+                ->run();
         } catch (PDOException $e) {
             throw $e;
         }
-    }    
+        if (count($result) == 0) {
+            return null;
+        }
+
+        return self::instanceByArray($result[0]);
+    }
 }
 
 ?>

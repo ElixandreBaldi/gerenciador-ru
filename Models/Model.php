@@ -5,10 +5,6 @@ require_once('../Services/SearchBuilder.php');
 
 class Model
 {
-    /*
-     CREATE DATABASE ru; USE ru;
-    */
-
     /**
      * @var string Tabela referente ao modelo.
      */
@@ -28,13 +24,17 @@ class Model
     public static function find($id)
     {
         try {
-            //echo 'SELECT * FROM ' . static::$table . ' WHERE ' . static::$primaryKey . '=' . $id . ' LIMIT 1';
             return Connection::getConnection()->query('SELECT * FROM ' . static::$table . ' WHERE ' . static::$primaryKey . '=' . $id . ' LIMIT 1');
         } catch (PDOException $e) {
             throw $e;
         }
     }
 
+    /**
+     * Inicializa um select no banco de dados.
+     *
+     * @return \SearchBuilder
+     */
     public static function search ()
     {
         return new SearchBuilder(static::$table);

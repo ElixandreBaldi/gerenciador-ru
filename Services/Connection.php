@@ -29,13 +29,20 @@ class Connection
     }
 
     /**
+     * Privado. Exclui a possibilidade de clone.
+     */
+    private function __clone()
+    {
+    }
+
+    /**
      * Retorna a conexao singleton.
      *
      * @return \Connection|null
      */
     public static function getConnection()
     {
-        if (is_null(self::$instance)){
+        if (is_null(self::$instance)) {
             return new Connection();
         }
 
@@ -51,8 +58,9 @@ class Connection
     public function query($query)
     {
         try {
-            return $this->db->query($query)->fetchAll(PDO::FETCH_ASSOC);
-        } catch (PDOException $e){
+            return $this->db->query($query)
+                ->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
             throw $e;
         }
     }

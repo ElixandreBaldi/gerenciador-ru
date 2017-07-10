@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>Gerenciador RU</title>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <style type="text/css">
-        body {
-            background: url('img/img<?php echo rand(1,7);?>.jpg');
-        }
-    </style>
-</head>
+<?php include('header.php') ?>
 <body>
 <div class="panel panel-default container" id="all">
     <div class="panel-body">
@@ -20,13 +10,22 @@
             </h1>
         </legend>
         <form id="login" method="POST" action="login.php">
+            <?php if (isset($data['error'])){?>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-3">
+                        <div class="alert alert-danger">
+                            <strong>Erro!</strong> <?php echo $data['error'] ?>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <div class="input-group input-group-lg">
                         <span class="input-group-addon" id="sizing-addon1"><i
                                 class="glyphicon glyphicon-user"></i></span>
                         <input type="text" class="form-control" placeholder="Usuário" aria-describedby="sizing-addon1"
-                               name="username">
+                               name="username" value="<?php if (isset($data['old_username'])) echo $data['old_username']; ?>">
                     </div>
                 </div>
             </div>
@@ -39,7 +38,6 @@
                         <input type="password" class="form-control" placeholder="Senha"
                                aria-describedby="sizing-addon1" name="password">
                     </div>
-                    <span></span>
                 </div>
             </div>
             <br/>

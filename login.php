@@ -1,9 +1,6 @@
 <?php
 
-ini_set('display_errors', 'On');
-error_reporting(E_ALL);
-
-require_once('Models/Usuario.php');
+include_once('autoload.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
@@ -12,12 +9,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $usr = Usuario::findLogin($username, $password);
 
     if (is_null($usr)) {
-        $data = [
-            'error' => 'ERROOO',
-        ];
+        $data['error'] = 'Usuário ou senha inválidos.';
+        $data['old_username'] = $username;
+        require('Views/login.php');
+    } else {
+        $_SESSION['usr'] = $usr->getId();
+        require('Views/main.php');
     }
+}
 
-    require_once('Views/login.php');
+else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    require('Views/login.php');
 }
 
 ?>

@@ -1,18 +1,6 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-	<link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
-    <script src="js/jquery-3.2.1.min.js"></script>  
-
-    <style type="text/css">
-        body {
-            background: url('img/imgs<?php echo rand(1,3);?>.jpg');
-        }
-    </style>  
-</head>
+<?php include_once('header.php') ?>
 <body>
 <div id="all">
     <form>
@@ -70,13 +58,13 @@
     <a href="main.php">
         <button type="button" class="btn btn-primary">Início</button>
     </a>
-    <a href="inserirCreditos.php">
+    <a href="inserir.php">
         <button type="button" class="btn btn-primary">Recarregar Usuário</button>
     </a>
-    <a href="logUsuario.php">
+    <a href="historico.php">
         <button type="button" class="btn btn-primary">Consultar Histórico </button>
     </a> 
-    <a href="index.php">
+    <a href="../index.php">
         <button type="button" class="btn btn-primary">Sair <i class="glyphicon glyphicon-share"></i></button>
     </a>  
 </div>

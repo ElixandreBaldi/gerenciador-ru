@@ -1,5 +1,7 @@
 <?php
 
+include_once('autoload.php');
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    require_once('Views/login.php');
+    require('Views/login.php');
 }

@@ -1,7 +1,5 @@
 <?php
 
-require_once('../Services/Connection.php');
-
 class SearchBuilder
 {
     private $query;

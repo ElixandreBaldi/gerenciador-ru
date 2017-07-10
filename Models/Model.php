@@ -1,8 +1,5 @@
 <?php
 
-require_once('../Services/Connection.php');
-require_once('../Services/SearchBuilder.php');
-
 class Model
 {
     /**

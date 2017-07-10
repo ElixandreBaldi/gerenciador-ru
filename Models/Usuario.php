@@ -88,6 +88,12 @@ class Usuario extends Model
         $this->atualizadoEm = $atualizadoEm;
     }
 
+    /**
+     * Gera uma instancia do usuario com base em um array.
+     *
+     * @param array $data
+     * @return \Usuario
+     */
     public static function instanceByArray(array $data)
     {
         if (is_null($data['registro_academico'])) {
@@ -99,6 +105,14 @@ class Usuario extends Model
         }
 
         return new self($data['id'], $data['usuario'], $data['senha'], $registro, $isRegistroAcademico, $data['nivel'], $data['criado_em'], $data['atualizado_em']);
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

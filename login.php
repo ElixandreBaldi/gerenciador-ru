@@ -11,15 +11,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (is_null($usr)) {
         $data['error'] = 'Usuário ou senha inválidos.';
         $data['old_username'] = $username;
-        require('Views/login.php');
+        return require('Views/login.php');
     } else {
         $_SESSION['usr'] = $usr->getId();
-        require('Views/main.php');
+        header('Location: main.php');
     }
 }
 
 else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    require('Views/login.php');
+    if (isset($_SESSION['usr'])){
+        header('Location: main.php');
+    } else {
+        return require('Views/login.php');
+    }
 }
 
 ?>

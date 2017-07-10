@@ -1,7 +1,5 @@
 <?php
 
-require_once('Model.php');
-
 class Usuario extends Model
 {
     protected static $table = 'usuarios';

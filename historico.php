@@ -7,7 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         header('Location: login.php');
     } else {
         $loggedUser = Usuario::find($_SESSION['usr']);
-        var_dump($loggedUser->getTransacoes());
-        //return require('Views/main.php');
+        $transactions = $loggedUser->getTransacoes();
+        return require('Views/historico.php');
     }
 }

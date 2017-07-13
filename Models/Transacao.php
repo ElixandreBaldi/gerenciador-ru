@@ -75,4 +75,14 @@ class Transacao extends Model
     {
         return $this->usuario;
     }
+
+    /**
+     * @return \DateTime
+     */
+    public function getCriadoEm()
+    {
+        return $this->criadoEm;
+    }
+
+
 }

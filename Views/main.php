@@ -60,7 +60,7 @@
     <a href="historico.php">
         <button type="button" class="btn btn-primary">Consultar Histórico </button>
     </a> 
-    <a href="../index.php">
+    <a href="logout.php">
         <button type="button" class="btn btn-primary">Sair <i class="glyphicon glyphicon-share"></i> </button>
     </a>    
 </div>

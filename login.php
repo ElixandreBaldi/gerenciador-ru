@@ -14,7 +14,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         return require('Views/login.php');
     } else {
         $_SESSION['usr'] = $usr->getId();
-        header('Location: main.php');
+        $nivel = $usr->getNivel();
+        if ($nivel == 1){
+            header('Location: main.php');
+        }
+        else {
+            header('Location: historico.php');
+        }
     }
 }
 

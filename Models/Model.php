@@ -16,12 +16,20 @@ class Model
      * Procura por um modelo com a chave primaria especificada.
      *
      * @param $id
-     * @return array
+     * @return mixed
      */
     public static function find($id)
     {
         try {
-            return Connection::getConnection()->query('SELECT * FROM ' . static::$table . ' WHERE ' . static::$primaryKey . '=' . $id . ' LIMIT 1');
+            $result = static::search()
+                ->whereEqual(static::$primaryKey, $id)
+                ->limit(1)
+                ->run();
+            if (count($result) == 0) {
+                return null;
+            }
+
+            return static::instanceByArray($result[0]);
         } catch (PDOException $e) {
             throw $e;
         }
@@ -32,22 +40,20 @@ class Model
      *
      * @return \SearchBuilder
      */
-    public static function search ()
+    public static function search()
     {
         return new SearchBuilder(static::$table);
     }
+
     /**
-     * Executa uma sql qualquer.
+     * Deve ser implementado em todas as classes filhas
      *
-     * @param string $sql
+     * @param $data
+     * @return mixed
      */
-    public static function sql($sql)
+    public static function instanceByArray(array $data)
     {
-        try {
-            return Connection::getConnection()->query($sql);
-        } catch (PDOException $e) {
-            throw $e;
-        }
+        return null;
     }
 }
 

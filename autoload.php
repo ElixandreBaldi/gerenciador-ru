@@ -5,5 +5,6 @@ require_once('Services/Connection.php');
 require_once('Services/SearchBuilder.php');
 require_once('Models/Model.php');
 require_once('Models/Usuario.php');
+require_once('Models/Transacao.php');
 $data = [];
 session_start();

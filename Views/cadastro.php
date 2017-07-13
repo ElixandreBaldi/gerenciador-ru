@@ -72,13 +72,13 @@
 	$('#registroAcademico,#registroUniversitario').hide();
     $('#nivel').change(function () {        
         var cod = $('#nivel').val();
-        if( cod == 0)
+        if( cod === 0)
         	$('#registroAcademico,#registroUniversitario').hide();
-        else if (cod == 1) {
+        else if (cod === 1) {
             $('#registroUniversitario').hide();
             $('#registroAcademico').show();
         }
-        else if(cod == 2){
+        else if(cod === 2){
             $('#registroAcademico').hide();
             $('#registroUniversitario').show();
         

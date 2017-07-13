@@ -35,12 +35,12 @@ class Usuario extends Model
     protected $registroUniversitario;
 
     /**
-     * @var \DateTime Data de criaçao do usuario.
+     * @var string Data de criaçao do usuario.
      */
     protected $criadoEm;
 
     /**
-     * @var \DateTime Data da ultima atualizaçao do usuario.
+     * @var string Data da ultima atualizaçao do usuario.
      */
     protected $atualizadoEm;
 
@@ -75,7 +75,6 @@ class Usuario extends Model
             $this->registroAcademico = null;
         }
         $this->nivel = $nivel;
-
         if (is_null($criadoEm)) {
             $criadoEm = date('Y-m-d H:i:s');
         }
@@ -184,6 +183,27 @@ class Usuario extends Model
         }
 
         return self::instanceByArray($result[0]);
+    }
+
+    /**
+     * @return array
+     */
+    public function getTransacoes()
+    {
+        $transactions = [];
+        try {
+            $result = Transacao::search()
+                ->whereEqual('usuario_id', $this->id)
+                ->run();
+        } catch (PDOException $e) {
+            throw $e;
+        }
+
+        foreach($result as $r){
+            array_push($transactions, Transacao::instanceByArray($r));
+        }
+
+        return $transactions;
     }
 }
 

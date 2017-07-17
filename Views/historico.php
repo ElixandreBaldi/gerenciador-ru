@@ -5,7 +5,8 @@
 <div id="all">
     <form>
         <div class="panel-heading">
-            <legend>Histórico do Usuário</legend>
+            <legend>Histórico do Usuário</legend>                  
+            <?php if($admin) { ?>      
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
                 <input id="entrada-codigo" type="text" class="form-control" placeholder="Insira o cartão do cliente"
@@ -14,6 +15,15 @@
                 <span class="input-group-btn"><button class="btn btn-default" type="button"><i
                                 class="glyphicon glyphicon-ok"></i></button></span>
             </div>
+            <?php
+                }else{
+            ?>
+                <div class="col-md-10 col-md-offset-1">
+                    <legend><h3>Bem vindo <?=$nomeUsuario?></h3></legend>
+                </div>
+            <?php
+                }
+            ?>
         </div>
 
         <div class="panel-body">
@@ -47,25 +57,20 @@
                         ?>
                         </tbody>
                     </table>
+                    <div class="col-md-offset-1" id="valor">
+                        <a href="main.php" class="btn button">
+                            <span class="label label-success" style="font-size: 50px;">
+                                Saldo: R$ <?=$saldo?>
+                            </span>
+                        </a>
+                    </div>  
                 </div>
             </div>
-        </div>
+        </div>        
     </form>
 </div>
-<div id="acoes" style="position: absolute; right: 0; bottom: 0;">
-    <a href="main.php">
-        <button type="button" class="btn btn-primary">Início</button>
-    </a>
-    <a href="cadastro.php">
-        <button type="button" class="btn btn-primary">Cadastrar Usuário</button>
-    </a>
-    <a href="inserir.php">
-        <button type="button" class="btn btn-primary">Recarregar Usuário</button>
-    </a>
-    <a href="../index.php">
-        <button type="button" class="btn btn-primary">Sair <i class="glyphicon glyphicon-share"></i></button>
-    </a>
-</div>
+<?php include_once('footer.php') ?>
+
 <script>
     $('#tabela-log').hide();
     $('#entrada-codigo').blur(function () {

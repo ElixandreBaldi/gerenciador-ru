@@ -54,20 +54,7 @@
         </div>
     </form>
 </div>
-<div id="acoes" style="position: absolute; right: 0; bottom: 0;">    
-    <a href="main.php">
-        <button type="button" class="btn btn-primary">Início</button>
-    </a>
-    <a href="inserir.php">
-        <button type="button" class="btn btn-primary">Recarregar Usuário</button>
-    </a>
-    <a href="historico.php">
-        <button type="button" class="btn btn-primary">Consultar Histórico </button>
-    </a> 
-    <a href="../index.php">
-        <button type="button" class="btn btn-primary">Sair <i class="glyphicon glyphicon-share"></i></button>
-    </a>  
-</div>
+<?php include_once('footer.php') ?>
 <script>
 	$('#registroAcademico,#registroUniversitario').hide();
     $('#nivel').change(function () {        

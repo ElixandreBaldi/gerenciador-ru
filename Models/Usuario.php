@@ -43,7 +43,7 @@ class Usuario extends Model
      * @var string Data da ultima atualizaçao do usuario.
      */
     protected $atualizadoEm;
-
+    
     /**
      * @param int $id
      * @param string $usuario
@@ -118,6 +118,11 @@ class Usuario extends Model
     public function getNivel()
     {
         return $this->nivel;
+    }
+
+    public function getUsuario()
+    {
+        return $this->usuario;
     }
 
     /**
@@ -201,9 +206,16 @@ class Usuario extends Model
 
         foreach($result as $r){
             array_push($transactions, Transacao::instanceByArray($r));
-        }
+        }    
 
         return $transactions;
+    }
+
+    public function isAdmin()
+    {        
+        if($this->nivel == 1)        
+            return true;
+        return false;
     }
 }
 

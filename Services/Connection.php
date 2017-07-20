@@ -2,6 +2,10 @@
 
 class Connection
 {
+    const FETCHALL = 1;
+
+    const ROWCOUNT = 2;
+
     /**
      * @var \PDO Variavel de conexao.
      */
@@ -19,7 +23,7 @@ class Connection
     private function __construct()
     {
         try {
-            $this->db = new PDO('mysql:host=localhost;dbname=ru;charset=utf8mb4', 'root', 'root');
+            $this->db = new PDO('mysql:host=localhost;dbname=ru;charset=utf8mb4', 'root', 'vertrigo');
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             self::$instance = $this;
@@ -53,13 +57,19 @@ class Connection
      * Executa uma query qualquer. Retorna os resultados.
      *
      * @param $query
-     * @return array
+     * @return array|int
      */
-    public function query($query)
+    public function query($query, $modifier = Connection::FETCHALL)
     {
         try {
-            return $this->db->query($query)
-                ->fetchAll(PDO::FETCH_ASSOC);
+            $query = $this->db->query($query);
+            if ($modifier == Connection::FETCHALL) {
+                return $query->fetchAll(PDO::FETCH_ASSOC);
+            } else {
+                if ($modifier == Connection::ROWCOUNT) {
+                    return $query->rowCount();
+                }
+            }
         } catch (PDOException $e) {
             throw $e;
         }

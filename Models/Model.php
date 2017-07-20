@@ -25,7 +25,7 @@ class Model
                 ->whereEqual(static::$primaryKey, $id)
                 ->limit(1)
                 ->run();
-            if (count($result) == 0) {
+            if ((count($result) == 0) || is_null($result)) {
                 return null;
             }
 
@@ -43,6 +43,16 @@ class Model
     public static function search()
     {
         return new SearchBuilder(static::$table);
+    }
+
+    /**
+     * Inicializa um insert no banco de dados.
+     *
+     * @return \InsertBuilder
+     */
+    public static function insert()
+    {
+        return new InsertBuilder(static::$table);
     }
 
     /**

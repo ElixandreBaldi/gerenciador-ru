@@ -2,6 +2,9 @@
 
 class SearchBuilder
 {
+    /**
+     * @var string
+     */
     private $query;
 
     private $countWhereStatements;
@@ -14,12 +17,12 @@ class SearchBuilder
 
     public function whereEqual($attribute, $value)
     {
-        if ($this->countWhereStatements > 0){
+        if ($this->countWhereStatements > 0) {
             $this->query .= ' AND ';
         } else {
             $this->query .= ' WHERE ';
         }
-        $this->query .= $attribute . '= \'' . $value . '\'';
+        $this->query .= $attribute.'= \''.$value.'\'';
         $this->countWhereStatements++;
 
         return $this;
@@ -27,12 +30,12 @@ class SearchBuilder
 
     public function whereDifferent($attribute, $value)
     {
-        if ($this->countWhereStatements > 0){
+        if ($this->countWhereStatements > 0) {
             $this->query .= ' AND ';
         } else {
             $this->query .= ' WHERE ';
         }
-        $this->query .= $attribute . '<> \'' . $value . '\'';
+        $this->query .= $attribute.'<> \''.$value.'\'';
         $this->countWhereStatements++;
 
         return $this;
@@ -40,12 +43,12 @@ class SearchBuilder
 
     public function whereGreaterThan($attribute, $value)
     {
-        if ($this->countWhereStatements > 0){
+        if ($this->countWhereStatements > 0) {
             $this->query .= ' AND ';
         } else {
             $this->query .= ' WHERE ';
         }
-        $this->query .= $attribute . '> \'' . $value . '\'';
+        $this->query .= $attribute.'> \''.$value.'\'';
         $this->countWhereStatements++;
 
         return $this;
@@ -53,12 +56,12 @@ class SearchBuilder
 
     public function whereGreaterOrEqualThan($attribute, $value)
     {
-        if ($this->countWhereStatements > 0){
+        if ($this->countWhereStatements > 0) {
             $this->query .= ' AND ';
         } else {
             $this->query .= ' WHERE ';
         }
-        $this->query .= $attribute . '>= \'' . $value . '\'';
+        $this->query .= $attribute.'>= \''.$value.'\'';
         $this->countWhereStatements++;
 
         return $this;
@@ -66,12 +69,12 @@ class SearchBuilder
 
     public function whereLessThan($attribute, $value)
     {
-        if ($this->countWhereStatements > 0){
+        if ($this->countWhereStatements > 0) {
             $this->query .= ' AND ';
         } else {
             $this->query .= ' WHERE ';
         }
-        $this->query .= $attribute . '< \'' . $value . '\'';
+        $this->query .= $attribute.'< \''.$value.'\'';
         $this->countWhereStatements++;
 
         return $this;
@@ -79,12 +82,12 @@ class SearchBuilder
 
     public function whereLessOrEqualThan($attribute, $value)
     {
-        if ($this->countWhereStatements > 0){
+        if ($this->countWhereStatements > 0) {
             $this->query .= ' AND ';
         } else {
             $this->query .= ' WHERE ';
         }
-        $this->query .= $attribute . '<= \'' . $value . '\'';
+        $this->query .= $attribute.'<= \''.$value.'\'';
         $this->countWhereStatements++;
 
         return $this;
@@ -92,7 +95,7 @@ class SearchBuilder
 
     public function limit($limit)
     {
-        $this->query .= ' LIMIT ' . $limit;
+        $this->query .= ' LIMIT '.$limit;
 
         return $this;
     }
@@ -100,7 +103,9 @@ class SearchBuilder
     public function run()
     {
         $this->query .= ';';
-        return Connection::getConnection()->query($this->query);
+
+        return Connection::getConnection()
+            ->query($this->query);
     }
 }
 

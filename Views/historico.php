@@ -6,7 +6,7 @@
     <form>
         <div class="panel-heading">
             <legend>Histórico do Usuário</legend>                  
-            <?php if($admin) { ?>      
+            <?php if(isset($admin) && $admin) { ?>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
                 <input id="entrada-codigo" type="text" class="form-control" placeholder="Insira o cartão do cliente"

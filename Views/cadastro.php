@@ -28,13 +28,13 @@
 	            	<div class="col-md-7">
 	            		<div class="input-group input-group-md">
 			                <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-			                <input type="text" class="form-control" placeholder="Usuario" autofocus="autofocus" aria-describedby="sizing-addon1" name="username">
+			                <input type="text" class="form-control" placeholder="Usuario" autofocus="autofocus" aria-describedby="sizing-addon1" name="username" required>
 			            </div>
 	            	</div>
 	            	<div class="col-md-5">
 	            		<div class="input-group input-group-md">
 			                <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-			                <input type="password" class="form-control" placeholder="Senha" aria-describedby="sizing-addon1" name="password">
+			                <input type="password" class="form-control" placeholder="Senha" aria-describedby="sizing-addon1" name="password" required>
 			            </div>
 	            	</div>
 	            </div>

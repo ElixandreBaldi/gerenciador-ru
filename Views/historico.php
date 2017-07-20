@@ -70,19 +70,5 @@
     </form>
 </div>
 <?php include_once('footer.php') ?>
-
-<script>
-    $('#tabela-log').hide();
-    $('#entrada-codigo').blur(function () {
-        var cod = $('#entrada-codigo').val();
-        if ((cod.length >= 4)) {
-            if (cod[0] === '1') {
-                $('#tabela-log').show();
-            } else {
-                $('#tabela-log').show();
-            }
-        }
-    });
-</script>
 </body>
 </html>

@@ -25,7 +25,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
             if ($loggedUser->getNivel() != 1) {
                 header('Location: historico.php');
             } else {
-                if (Usuario::insert()
+                $errors = [];
+                if ($type != 1 && $type != 2) {
+                    array_push($errors, 'É necessário informar o nível (acadêmico ou universitário).');
+                    $success = false;
+                }
+                else if (empty($acadReg) && empty($univReg)) {
+                    array_push($errors, 'É necessário informar o registro acadêmico ou universiário.');
+                    $success = false;
+                }
+                else if ($type == 1 && Usuario::academicRegisterExists($acadReg)) {
+                    array_push($errors, "Registro acadêmico {$acadReg} já existe.");
+                    $success = false;
+                }
+                else if ($type == 2 && Usuario::universitaryRegisterExists($univReg)){
+                    array_push($errors, "Registro universitário {$univReg} já existe.");
+                    $success = false;
+                }
+                else if (Usuario::userExists($username)) {
+                    array_push($errors, "Usuário {$username} já existe.");
+                    $success = false;
+                }
+                else if (Usuario::insert()
                         ->values([
                             'usuario' => $username,
                             'senha' => md5($password),

@@ -9,6 +9,8 @@ class SearchBuilder
 
     private $countWhereStatements;
 
+    private $count = false;
+
     public function __construct($table)
     {
         $this->countWhereStatements = 0;
@@ -100,9 +102,21 @@ class SearchBuilder
         return $this;
     }
 
+    public function count()
+    {
+        $this->query = str_replace('*', 'COUNT(*)', $this->query);
+        $this->count = true;
+
+        return $this;
+    }
+
     public function run()
     {
         $this->query .= ';';
+        if ($this->count) {
+            return Connection::getConnection()
+                ->query($this->query)[0]['COUNT(*)'];
+        }
 
         return Connection::getConnection()
             ->query($this->query);

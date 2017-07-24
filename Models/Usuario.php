@@ -211,11 +211,50 @@ class Usuario extends Model
         return $transactions;
     }
 
+    /**
+     * @return bool
+     */
     public function isAdmin()
     {        
         if($this->nivel == 1)        
             return true;
         return false;
+    }
+
+    /**
+     * @param string $usr
+     * @return bool
+     */
+    public static function userExists($usr)
+    {
+        return self::search()
+            ->whereEqual('usuario', $usr)
+            ->count()
+            ->run() > 0;
+    }
+
+    /**
+     * @param $reg
+     * @return bool
+     */
+    public static function academicRegisterExists($reg)
+    {
+        return self::search()
+                ->whereEqual('registro_academico', $reg)
+                ->count()
+                ->run() > 0;
+    }
+
+    /**
+     * @param $reg
+     * @return bool
+     */
+    public static function universitaryRegisterExists($reg)
+    {
+        return self::search()
+                ->whereEqual('registro_universitario', $reg)
+                ->count()
+                ->run() > 0;
     }
 }
 

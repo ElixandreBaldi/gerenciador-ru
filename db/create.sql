@@ -24,14 +24,15 @@ DROP TABLE IF EXISTS `ru`.`usuarios` ;
 
 CREATE TABLE IF NOT EXISTS `ru`.`usuarios` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `usuario` VARCHAR(255) NOT NULL,
+  `usuario` VARCHAR(255) NOT NULL UNIQUE,
   `senha` VARCHAR(255) NOT NULL,
   `nivel` INT NOT NULL,
-  `registro_academico` INT NULL,
-  `registro_universitario` INT NULL,
+  `registro_academico` INT NULL UNIQUE,
+  `registro_universitario` INT NULL UNIQUE,
   `criado_em` DATETIME NULL,
   `atualizado_em` DATETIME NULL,
   PRIMARY KEY (`id`))
+
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 

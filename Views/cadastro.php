@@ -16,7 +16,14 @@
                     </div>
                     <?php } else { ?>
                         <div class="alert alert-danger">
-                            <strong>Erro!</strong> Não foi possível inserir o usuário
+                            <strong>Erro!</strong> Não foi possível inserir o usuário.
+                            <?php
+                            if (isset($errors)) {
+                                foreach($errors as $error) {
+                                    echo "<br>".$error;
+                                }
+                            }
+                            ?>
                         </div>
                     <?php } ?>
                 </div>
@@ -28,7 +35,7 @@
 	            	<div class="col-md-7">
 	            		<div class="input-group input-group-md">
 			                <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-			                <input type="text" class="form-control" placeholder="Usuario" autofocus="autofocus" aria-describedby="sizing-addon1" name="username" required>
+			                <input class="form-control" placeholder="Usuario" autofocus aria-describedby="sizing-addon1" name="username" required>
 			            </div>
 	            	</div>
 	            	<div class="col-md-5">
@@ -52,7 +59,7 @@
 	            	<div class="col-md-7" id="registro-academico">
 	            		<div class="input-group input-group-md">
 			                <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-education"></i></span>
-			                <input type="text" class="form-control" name="acad-reg" placeholder="Registro Acadêmico" aria-describedby="sizing-addon1">
+			                <input  class="form-control" name="acad-reg" placeholder="Registro Acadêmico" aria-describedby="sizing-addon1">
 			            </div>
 	            	</div>
 	            	<div class="col-md-7" id="registro-universitario">
@@ -63,7 +70,7 @@
 	            	</div>	
 	            </div>   
 	            <div class="form-group col-md-12">	            	 
-	            	<button type="submit" class="btn btn-primary btn-md col-md-offset-8 col-md-3">Enviar</button>
+	            	<button class="btn btn-primary btn-md col-md-offset-8 col-md-3">Enviar</button>
 	            </div>	                   
             </form>
         </div>

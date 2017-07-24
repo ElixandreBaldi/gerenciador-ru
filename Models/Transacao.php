@@ -84,5 +84,11 @@ class Transacao extends Model
         return $this->criadoEm;
     }
 
-
+    /**
+     * @return bool
+     */
+    public function isConsume()
+    {
+        return $this->valor < 0;
+    }
 }

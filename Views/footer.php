@@ -1,5 +1,5 @@
 <div id="acoes" style="position: absolute; right: 0; bottom: 0;">
-<?php    
+<?php
     if(isset($admin) && $admin) {
 ?>
     <a href="main.php">

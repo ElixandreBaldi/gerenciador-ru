@@ -38,7 +38,7 @@ class Model
     /**
      * Inicializa um select no banco de dados.
      *
-     * @return \SearchBuilder
+     * @retif ($_SERVER['REQUEST_METHOD'] === 'GET') {urn \SearchBuilder
      */
     public static function search()
     {

@@ -256,6 +256,29 @@ class Usuario extends Model
                 ->count()
                 ->run() > 0;
     }
+
+    /**
+     * @param string|int $reg
+     * @return \Usuario|bool
+     */
+    public static function findByRegister($reg)
+    {
+        $firstTry = self::search()
+            ->whereEqual('registro_academico', $reg)
+            ->run();
+        if (!$firstTry) {
+            $secondTry = self::search()
+                ->whereEqual('registro_universitario', $reg)
+                ->run();
+            if (!$secondTry) {
+                return false;
+            }
+
+            return self::instanceByArray($secondTry);
+        }
+
+        return self::instanceByArray($firstTry);
+    }
 }
 
 ?>

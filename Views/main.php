@@ -3,14 +3,14 @@
 <?php include_once('header.php') ?>
 <body>
 <div id="all">
-    <form>
+    <form method="POST" action="consumir.php">
         <div class="panel-heading">
             <legend>Consumir Refeição</legend>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-cutlery"></i></span>
                 <input id="entrada-codigo" type="text" class="form-control" placeholder="Insira o cartão do cliente" autofocus="autofocus"
                        aria-describedby="sizing-addon1">
-                <span class="input-group-btn"><button class="btn btn-default" type="button"><i
+                <span class="input-group-btn"><button class="btn btn-default"><i
                                 class="glyphicon glyphicon-ok"></i></button></span>
             </div>
         </div>

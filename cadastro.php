@@ -2,16 +2,15 @@
 
 include_once('autoload.php');
 
+if (! isset($_SESSION['usr']) || ! $loggedUser = Usuario::find($_SESSION['usr'])) {
+    header('Location: login.php');
+}
+else if (! $admin = $loggedUser->isAdmin()) {
+    header('Location: historico.php');
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (! isset($_SESSION['usr']) || ! $loggedUser = Usuario::find($_SESSION['usr'])) {
-        header('Location: login.php');
-    } else {
-        if ($loggedUser->getNivel() != 1) {
-            header('Location: historico.php');
-        } else {
-            return require('Views/cadastro.php');
-        }
-    }
+    return require('Views/cadastro.php');
 } else {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = isset($_POST['username']) ? $_POST['username'] : null;

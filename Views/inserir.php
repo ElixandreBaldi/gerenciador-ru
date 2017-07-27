@@ -3,30 +3,40 @@
 <?php include_once('header.php') ?>
 <body>
 <div id="all">
-    <form>
+    <form action="recarga.php" method="POST">
         <div class="panel-heading">
         <legend>Recarga de Créditos</legend>
             <div class="input-group input-group-lg">
                 <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="entrada-codigo" type="text" class="form-control" placeholder="Insira o cartão do cliente" autofocus="autofocus"
+                <input id="entrada-codigo" name="registro" type="text" class="form-control" placeholder="Insira o cartão do cliente" autofocus="autofocus"
                        aria-describedby="sizing-addon1">
-                <span class="input-group-btn"><button class="btn btn-default" type="button"><i
+                <span class="input-group-btn"><button class="btn btn-default" type="submit button"><i
                                 class="glyphicon glyphicon-ok"></i></button></span>
             </div>
         </div>
-
-        <div class="panel-body">
+    </form>
+    <?php
+        if(isset($registro)) {
+    ?>
+    <div class="panel-body">
+        <form action="recarga.php" method="PUT">
+            <?php
+                if ($nivel == "registro_academico") {
+            ?>
             <div id="aluno">
                 <legend>Aluno</legend>
                 <div class="form-group col-md-5">
                     <label for="ra">Registro Acadêmico:</label>
-                    <input type="text" class="form-control" disabled name="ra"/>
+                    <input type="text" value="<?=$registro;?>" class="form-control" disabled name="ra"/>
                 </div>
                 <div class="form-group col-md-7">
                     <label for="nome-academico">Nome:</label>
-                    <input type="text" class="form-control" disabled name="nome-academico"/>
+                    <input type="text" value="<?=$nomeUsuarioRecarga;?>" class="form-control" disabled name="nome-academico"/>
                 </div>
             </div>
+            <?php
+                }else {
+            ?>
             <div id="servidor">
                 <legend>Servidor</legend>
                 <div class="form-group col-md-5">
@@ -38,39 +48,34 @@
                     <input type="text" class="form-control" disabled name="nome-servidor"/>
                 </div>
             </div>
+            <?php
+                }
+            ?>
             <div id="input-carga">
                 <div class="form-group col-md-7">
                     <label for="ra">Quantidade da Carga:</label>
                     <input type="number" id="valor-carga" class="form-control" name="quantidade-carga"/>
-                </div>
-            </div>                        
-            <div id="valor">
-                <div class="form-group col-md-7" style="margin-top:10px;">
-                    <a href="inserir.php" class="btn button">
-        				<span class="label label-success" id="valor-recarga" style="font-size: 50px;">
-        					R$ 0,00
-        				</span>
-                    </a>
+                    <input type="hidden" name="nivel" value="<?=$nivel?>"/>
+                    <input type="hidden" name="registro" value="<?=$registro?>"/>
                 </div>
             </div>
-        </div>
-    </form>
+            <div id="valor">
+                <div class="form-group col-md-7" style="margin-top:10px;">
+                    <button type="submit" class="btn button">
+                <span class="label label-success" id="valor-recarga" style="font-size: 50px;">
+                    R$ 0,00
+                </span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+        <?php
+            }
+        ?>
 </div>
 <?php include_once('footer.php') ?>
 <script>
-    $('#servidor,#aluno,#valor,#input-carga').hide();
-    $('#entrada-codigo').blur(function () {
-        var cod = $('#entrada-codigo').val();
-        if ((cod.length >= 4)) {
-            if (cod[0] === '1') {
-                $('#aluno').hide();
-                $('#servidor,#valor,#input-carga').show();
-            } else {
-                $('#servidor').hide();
-                $('#aluno,#valor,#input-carga').show();
-            }
-        }
-    });
     $("#valor-carga").blur(function(){
         var num = parseFloat($('#valor-carga').val()).toFixed(2);
         if (isNaN(num) || num < 0) {

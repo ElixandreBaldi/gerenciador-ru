@@ -3,23 +3,66 @@
 <?php include_once('header.php') ?>
 <body>
 <div id="all">
-    <form action="recarga.php" method="POST">
-        <div class="panel-heading">
-        <legend>Recarga de Créditos</legend>
-            <div class="input-group input-group-lg">
-                <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-                <input id="entrada-codigo" name="registro" type="text" class="form-control" placeholder="Insira o cartão do cliente" autofocus="autofocus"
-                       aria-describedby="sizing-addon1">
-                <span class="input-group-btn"><button class="btn btn-default" type="submit button"><i
-                                class="glyphicon glyphicon-ok"></i></button></span>
+    <?php if (isset($success)){?>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <?php if ($success) {?>
+                    <div class="alert alert-success">
+                        <strong>Sucesso!</strong> Credito adicionado!
+                    </div>
+                <?php } else { ?>
+                    <div class="alert alert-danger">
+                        <strong>Erro!</strong> Não foi possível inserir o usuário.
+                        <?php
+                        if (isset($errors)) {
+                            foreach($errors as $error) {
+                                echo "<br>".$error;
+                            }
+                        }
+                        ?>
+                    </div>
+                <?php } ?>
             </div>
         </div>
-    </form>
+        <script>
+            function disable_f5(e)
+            {
+                if ((e.which || e.keyCode) == 116)
+                {
+                    e.preventDefault();
+                }
+            }
+
+            $(document).ready(function(){
+                $(document).bind("keydown", disable_f5);
+            });
+        </script>
+    <?php }
+
+        if(!isset($registrar) || !$registrar) {
+    ?>
+        <form action="recarga.php" method="POST">
+            <div class="panel-heading">
+                <legend>Recarga de Créditos</legend>
+                <div class="input-group input-group-lg">
+                    <span class="input-group-addon" id="sizing-addon1"><i
+                                class="glyphicon glyphicon-user"></i></span>
+                    <input id="entrada-codigo" name="registro" type="text" class="form-control"
+                           placeholder="Insira o cartão do cliente" autofocus="autofocus"
+                           aria-describedby="sizing-addon1">
+                    <span class="input-group-btn"><button class="btn btn-default" type="submit button"><i
+                                    class="glyphicon glyphicon-ok"></i></button></span>
+                </div>
+
+            </div>
+        </form>
     <?php
-        if(isset($registro)) {
+        }
+        if(isset($registrar) && $registrar) {
     ?>
     <div class="panel-body">
-        <form action="recarga.php" method="PUT">
+        <legend>Recarga de Créditos</legend>
+        <form action="recarga.php" method="POST">
             <?php
                 if ($nivel == "registro_academico") {
             ?>

@@ -104,7 +104,7 @@
             </div>
             <div id="valor">
                 <div class="form-group col-md-7" style="margin-top:10px;">
-                    <button type="submit" class="btn button">
+                    <button type="submit" class="">
                 <span class="label label-success" id="valor-recarga" style="font-size: 50px;">
                     R$ 0,00
                 </span>

@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $usuario = Usuario::search()->whereEqual($nivel,$registro)->run();
         $transacao = Transacao::insert()->values(["valor"=>$valor,"usuario_id" => $usuario[0]['id']])->run();
-        
+
         $success = true;
         $registrar = false;
         return require('Views/inserir.php');

@@ -23,7 +23,7 @@ class Connection
     private function __construct()
     {
         try {
-            $this->db = new PDO('mysql:host=localhost;dbname=ru;charset=utf8mb4', 'root', 'root');
+            $this->db = new PDO('mysql:host=localhost;dbname=ru;charset=utf8mb4', 'root', 'vertrigo');
             $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $this->db->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
             self::$instance = $this;
@@ -59,20 +59,22 @@ class Connection
      * @param $query
      * @return array|int
      */
-    public function query($query, $modifier = Connection::FETCHALL)
+    public function query($query, $modifier = self::FETCHALL)
     {
         try {
             $query = $this->db->query($query);
-            if ($modifier == Connection::FETCHALL) {
+            if ($modifier == self::FETCHALL) {
                 return $query->fetchAll(PDO::FETCH_ASSOC);
             } else {
-                if ($modifier == Connection::ROWCOUNT) {
+                if ($modifier == self::ROWCOUNT) {
                     return $query->rowCount();
                 }
             }
         } catch (PDOException $e) {
             throw $e;
         }
+
+        return -1;
     }
 }
 

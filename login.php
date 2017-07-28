@@ -2,31 +2,36 @@
 
 include_once('autoload.php');
 
+if (isset($_SESSION['usr']) && $loggedUser = Usuario::find($_SESSION['usr'])) {
+    header('Location: main.php');
+    die;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = isset($_POST['username']) ? $_POST['username'] : null;
     $password = isset($_POST['password']) ? $_POST['password'] : null;
 
-    $usr = Usuario::findLogin($username, $password);
-    if (is_null($usr)) {
-        $data['error'] = 'Usuário ou senha inválidos.';
-        $data['old_username'] = $username;
-        return require('Views/login.php');
+    $loggedUser = Usuario::findLogin($username, $password);
+
+    if (is_null($loggedUser)) {
+        $_SESSION['login_success'] = false;
+        $_SESSION['login_error'] = 'Usuário ou senha inválidos.';
+        $_SESSION['old_username'] = $username;
+
+        header('Location: login.php');
+        die;
     } else {
-        $_SESSION['usr'] = $usr->getId();
-        $nivel = $usr->getNivel();
-        if ($nivel == 1){
+        $_SESSION['usr'] = $loggedUser->getId();
+        if ($loggedUser->isAdmin()) {
             header('Location: main.php');
-        }
-        else {
+            die;
+        } else {
             header('Location: historico.php');
+            die;
         }
     }
-}
-
-else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (isset($_SESSION['usr'])){
-        header('Location: main.php');
-    } else {
+} else {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET') {
         return require('Views/login.php');
     }
 }

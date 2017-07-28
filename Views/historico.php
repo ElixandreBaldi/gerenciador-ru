@@ -6,7 +6,7 @@
     <form>
         <div class="panel-heading">
             <legend>Histórico do Usuário</legend>
-            <?php if (isset($admin) && $admin) { ?>
+            <?php if ($loggedUser->isAdmin()) { ?>
                 <div class="input-group input-group-lg">
                     <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
                     <input id="entrada-codigo" class="form-control" placeholder="Insira o cartão do cliente"
@@ -19,7 +19,7 @@
             } else {
                 ?>
                 <div class="col-md-10 col-md-offset-1">
-                    <legend><h3>Bem vindo, <?=$nomeUsuario?>.</h3></legend>
+                    <legend><h3>Bem vindo, <?= $loggedUser->getUsuario() ?>.</h3></legend>
                 </div>
                 <?php
             }
@@ -42,7 +42,7 @@
                         </thead>
                         <tbody>
                         <?php
-                        foreach ($transactions as $t) {
+                        foreach ($transacoes as $t) {
                             ?>
                             <tr>
                                 <td>

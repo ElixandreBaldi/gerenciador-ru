@@ -2,17 +2,17 @@
 
 include_once('autoload.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (!isset($_SESSION['usr'])){
-        header('Location: login.php');
-    } else {
-        $loggedUser = Usuario::find($_SESSION['usr']);
-        $admin = $loggedUser->isAdmin();
-        if(!$admin)
-            header('Location: login.php');
-        else {
+if (! isset($_SESSION['usr']) || ! $loggedUser = Usuario::find($_SESSION['usr'])) {
+    session_destroy();
+    header('Location: login.php');
+    die;
+}
 
-            return require('Views/inserir.php');
-        }
-    }
+if (! $admin = $loggedUser->isAdmin()) {
+    header('Location: historico.php');
+    die;
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    return require('Views/inserir.php');
 }

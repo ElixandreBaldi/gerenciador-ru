@@ -2,20 +2,19 @@
 
 include_once('autoload.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (!isset($_SESSION['usr'])){
-        header('Location: login.php');
-    } else {
-        $loggedUser = Usuario::find($_SESSION['usr']);
-        $transactions = $loggedUser->getTransacoes();
-        $admin = $loggedUser->isAdmin();   
-        $nomeUsuario = $loggedUser->getUsuario();
-        $saldo = 0.00;
-        foreach ($transactions as $t) {
-        	$saldo += $t->getValor();
-        }
-        $saldo = number_format($saldo,2,',','.');
+if (! isset($_SESSION['usr']) || ! $loggedUser = Usuario::find($_SESSION['usr'])) {
+    session_destroy();
+    header('Location: login.php');
+    die;
+}
 
-        return require('Views/historico.php');
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    $transacoes = $loggedUser->getTransacoes();
+    $saldo = 0.00;
+    foreach ($transacoes as $t) {
+        $saldo += $t->getValor();
     }
+    $saldo = number_format($saldo, 2, ',', '.');
+
+    return require('Views/historico.php');
 }

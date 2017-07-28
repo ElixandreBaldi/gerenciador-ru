@@ -43,7 +43,7 @@ class Usuario extends Model
      * @var string Data da ultima atualizaçao do usuario.
      */
     protected $atualizadoEm;
-    
+
     /**
      * @param int $id
      * @param string $usuario
@@ -101,7 +101,8 @@ class Usuario extends Model
             $isRegistroAcademico = true;
         }
 
-        return new self($data['id'], $data['usuario'], $data['senha'], $registro, $isRegistroAcademico, $data['nivel'], $data['criado_em'], $data['atualizado_em']);
+        return new self($data['id'], $data['usuario'], $data['senha'], $registro, $isRegistroAcademico, $data['nivel'],
+            $data['criado_em'], $data['atualizado_em']);
     }
 
     /**
@@ -120,6 +121,9 @@ class Usuario extends Model
         return $this->nivel;
     }
 
+    /**
+     * @return string
+     */
     public function getUsuario()
     {
         return $this->usuario;
@@ -204,9 +208,9 @@ class Usuario extends Model
             throw $e;
         }
 
-        foreach($result as $r){
+        foreach ($result as $r) {
             array_push($transactions, Transacao::instanceByArray($r));
-        }    
+        }
 
         return $transactions;
     }
@@ -215,10 +219,8 @@ class Usuario extends Model
      * @return bool
      */
     public function isAdmin()
-    {        
-        if($this->nivel == 1)        
-            return true;
-        return false;
+    {
+        return $this->nivel == 1;
     }
 
     /**
@@ -228,9 +230,9 @@ class Usuario extends Model
     public static function userExists($usr)
     {
         return self::search()
-            ->whereEqual('usuario', $usr)
-            ->count()
-            ->run() > 0;
+                ->whereEqual('usuario', $usr)
+                ->count()
+                ->run() > 0;
     }
 
     /**
@@ -266,11 +268,11 @@ class Usuario extends Model
         $firstTry = self::search()
             ->whereEqual('registro_academico', $reg)
             ->run();
-        if (!$firstTry) {
+        if (! $firstTry) {
             $secondTry = self::search()
                 ->whereEqual('registro_universitario', $reg)
                 ->run();
-            if (!$secondTry) {
+            if (! $secondTry) {
                 return false;
             }
 

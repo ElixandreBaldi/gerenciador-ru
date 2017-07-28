@@ -1,6 +1,6 @@
 <div id="acoes" style="position: absolute; right: 0; bottom: 0;">
 <?php
-    if(isset($admin) && $admin) {
+    if($loggedUser->isAdmin()) {
 ?>
     <a href="main.php">
         <button type="button" class="btn btn-primary">Início</button>

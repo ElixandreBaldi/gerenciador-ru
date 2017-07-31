@@ -2,7 +2,7 @@
 
 *Alunos:*
 
-* [Elixandre Baldi](https://github.com/ElixandreBaldi)
+* [Elixandre M. Baldi](https://github.com/ElixandreBaldi)
 
 * [Luiz Guilherme F. Rosa](https://github.com/luizguilhermefr)
 

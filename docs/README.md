@@ -8,15 +8,15 @@
 
 O projeto tem como objetivo a construção de um sistema que possibilite a gerência de restaurantes universitários por meio do pagamento pré-pago (cartão recarregável). O usuário deve manter o saldo positivo de modo que consiga efetuar as refeições sem ter de utilizar dinheiro no momento da compra.
 
-* [Controladores](#controllers)
+### [Controladores](#controllers)
 
-* [Visões](#views)
+### [Visões](#views)
 
-* [Modelos](#models)
+### [Modelos](#models)
 
-* [Serviços](#services)
+### [Serviços](#services)
 
-* [Outros](#other)
+### [Outros](#other)
 
 ## <a name="controllers"></a> Controladores
 

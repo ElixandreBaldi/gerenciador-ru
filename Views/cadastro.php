@@ -55,8 +55,8 @@
                             <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-tags"></i></span>
                             <select class="form-control" id="nivel" aria-describedby="sizing-addon1" name="type">
                                 <option class="form-control" value="0">Nível...</option>
-                                <option class="form-control" value="1">Aluno</option>
-                                <option class="form-control" value="2">Servidor</option>
+                                <option class="form-control" value="2">Aluno</option>
+                                <option class="form-control" value="3">Servidor</option>
                             </select>
                         </div>
                     </div>

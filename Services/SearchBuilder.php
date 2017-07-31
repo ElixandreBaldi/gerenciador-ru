@@ -11,6 +11,8 @@ class SearchBuilder
 
     private $count = false;
 
+    private $sum = NULL;
+
     public function __construct($table)
     {
         $this->countWhereStatements = 0;
@@ -110,13 +112,23 @@ class SearchBuilder
         return $this;
     }
 
+    public function sum($field)
+    {
+        $this->query = str_replace('*', 'SUM('.$field.')', $this->query);
+        $this->sum = $field;
+
+        return $this;
+    }
+
     public function run()
     {
         $this->query .= ';';
         if ($this->count) {
             return Connection::getConnection()
                 ->query($this->query)[0]['COUNT(*)'];
-        }
+        } else if($this->sum)
+            return floatval(Connection::getConnection()
+                ->query($this->query)[0]['SUM('.$this->sum.')']);
 
         return Connection::getConnection()
             ->query($this->query);

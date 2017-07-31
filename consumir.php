@@ -2,12 +2,12 @@
 
 include_once('autoload.php');
 
-if (! isset($_SESSION['usr']) || ! $loggedUser = Usuario::find($_SESSION['usr'])) {
+if (!isset($_SESSION['usr']) || !$loggedUser = Usuario::find($_SESSION['usr'])) {
     header('Location: login.php');
     die;
 }
 
-if (! $admin = $loggedUser->isAdmin()) {
+if (!$admin = $loggedUser->isAdmin()) {
     header('Location: historico.php');
     die;
 }
@@ -48,12 +48,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $consumidor = (isset ($_POST['consumidor'])) ? $_POST['consumidor'] : null;
 
+        $mensagemErro = 'Nenhum usuário encontrado.';
+
         $usuario = Usuario::find($consumidor);
 
-        if (!$usuario) {
+        $saldo = Transacao::search()
+            ->whereEqual('usuario_id', $usuario->getId())
+            ->sum('valor')
+            ->run();
+
+        $limite = $usuario->getNivel() == 2 ? 2.5 : 6.0;
+
+        if($saldo < $limite)
+            $mensagemErro = 'Cliente com saldo suficiente.';
+
+
+
+        if (!$usuario || $saldo < $limite) {
             $_SESSION['consume_success'] = false;
             $_SESSION['consume_error'] = [
-                'Nenhum usuário encontrado.',
+                $mensagemErro,
             ];
         } else {
             $valor = $usuario->getNivel() == 2 ? -2.5 : -6.0;

@@ -1,8 +1,24 @@
 # Gerenciador de Restaurantes Universitários
 
+*Alunos:*
+
+* [Elixandre Baldi](https://github.com/ElixandreBaldi)
+
+* [Luiz Guilherme F. Rosa](https://github.com/luizguilhermefr)
+
 O projeto tem como objetivo a construção de um sistema que possibilite a gerência de restaurantes universitários por meio do pagamento pré-pago (cartão recarregável). O usuário deve manter o saldo positivo de modo que consiga efetuar as refeições sem ter de utilizar dinheiro no momento da compra.
 
-## Controladores
+* [Controladores](#controllers)
+
+* [Visões](#views)
+
+* [Modelos](#models)
+
+* [Serviços](#services)
+
+* [Outros](#other)
+
+## <a name="controllers"></a> Controladores
 
 Os controladores são responsáveis pelo recebimento e resposta das requisições. Os controladores estão localizados na raiz do projeto, e são:
 
@@ -26,7 +42,7 @@ Os controladores são responsáveis pelo recebimento e resposta das requisiçõe
 
 * `cadastro.php` Controlador restrito ao administrador, possibilita o cadastro de novos usuários no sistema, verificando-se se já existe usuário com o mesmo registro ou nome de usuário.
 
-## Visões
+## <a name="views"></a> Visões
 
 As visões, ou `views` estão localizadas na pasta `/Views` e contém as telas formuladas em HTML e JavaScript para exibição dos dados. Existem ao total cinco visões, mais duas partes generalizadas entre elas. São:
 
@@ -44,7 +60,7 @@ As visões, ou `views` estão localizadas na pasta `/Views` e contém as telas f
 
 * `main.php` Visão que permite a consumação de uma refeição. Assim como `inserir.php`, é dividida em duas etapas.
 
-## Modelos
+## <a name="models"></a> Modelos
 
 Há dois modelos no sistema. Usuário e Transação. Os modelos estão localizados na pasta `/Models`.
 
@@ -54,7 +70,7 @@ Há dois modelos no sistema. Usuário e Transação. Os modelos estão localizad
 
 * `Transacao.php` Consumos e recargas são transações. O que difere uma da outra é se o valor é positivo (recarga) ou negativo (consumo).
 
-## Serviços
+## <a name="services"></a> Serviços
 
 Alguns serviços generalizados possuem o objetivo de possibilitar um maior reuso de código e escalabilidade do sistema. Os serviços estão localizados na pasta `/Services` e são:
 
@@ -64,7 +80,7 @@ Alguns serviços generalizados possuem o objetivo de possibilitar um maior reuso
 
 * `SearchBuilder.php` Permite a busca (`select`) de valores no banco de dados. Métodos como `count()`, `sum()`, `limit`, `where`, entre outros estão todos abstraídos e encapsulados.
 
-## Outros
+## <a name="other"></a> Outros
 
 Outras pastas importantes para o projeto são:
 
